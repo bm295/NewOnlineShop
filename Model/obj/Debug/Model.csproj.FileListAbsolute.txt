@@ -1,0 +1,10 @@
+D:\github\NewShopOnline\Model\bin\Debug\Model.dll
+D:\github\NewShopOnline\Model\bin\Debug\Model.pdb
+D:\github\NewShopOnline\Model\obj\Debug\Model.dll
+D:\github\NewShopOnline\Model\obj\Debug\Model.pdb
+D:\github\NewShopOnline\Model\bin\Debug\Model.dll.config
+D:\github\NewShopOnline\Model\bin\Debug\EntityFramework.dll
+D:\github\NewShopOnline\Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\github\NewShopOnline\Model\bin\Debug\EntityFramework.xml
+D:\github\NewShopOnline\Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\github\NewShopOnline\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

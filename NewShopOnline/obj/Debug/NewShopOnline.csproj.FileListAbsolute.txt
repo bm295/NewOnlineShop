@@ -65,3 +65,8 @@ D:\github\NewShopOnline\NewShopOnline\bin\Microsoft.AI.Web.xml
 D:\github\NewShopOnline\NewShopOnline\obj\Debug\NewShopOnline.csprojResolveAssemblyReference.cache
 D:\github\NewShopOnline\NewShopOnline\obj\Debug\NewShopOnline.dll
 D:\github\NewShopOnline\NewShopOnline\obj\Debug\NewShopOnline.pdb
+D:\github\NewShopOnline\NewShopOnline\bin\Model.dll
+D:\github\NewShopOnline\NewShopOnline\bin\Model.pdb
+D:\github\NewShopOnline\NewShopOnline\bin\EntityFramework.dll
+D:\github\NewShopOnline\NewShopOnline\bin\Model.dll.config
+D:\github\NewShopOnline\NewShopOnline\bin\EntityFramework.xml
