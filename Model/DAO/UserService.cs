@@ -19,6 +19,11 @@ namespace Model.DAO
             return user.Id;
         }
 
+        public User GetUserBy(string username)
+        {
+            return onlineShopDbContext.Users.SingleOrDefault(x => x.Username == username);
+        }
+
         public bool Login(string username, string password)
         {
             var result = onlineShopDbContext.Users.Count(x => x.Username == username && x.Password == password);

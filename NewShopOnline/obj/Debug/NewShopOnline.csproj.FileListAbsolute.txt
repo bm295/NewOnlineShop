@@ -70,3 +70,5 @@ D:\github\NewShopOnline\NewShopOnline\bin\Model.pdb
 D:\github\NewShopOnline\NewShopOnline\bin\EntityFramework.dll
 D:\github\NewShopOnline\NewShopOnline\bin\Model.dll.config
 D:\github\NewShopOnline\NewShopOnline\bin\EntityFramework.xml
+D:\github\NewShopOnline\NewShopOnline\bin\EntityFramework.SqlServer.dll
+D:\github\NewShopOnline\NewShopOnline\bin\EntityFramework.SqlServer.xml
