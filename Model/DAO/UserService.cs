@@ -24,12 +24,16 @@ namespace Model.DAO
             return onlineShopDbContext.Users.SingleOrDefault(x => x.Username == username);
         }
 
-        public bool Login(string username, string password)
+        public int Login(string username, string password)
         {
-            var result = onlineShopDbContext.Users.Count(x => x.Username == username && x.Password == password);
-            if (result > 0)
-                return true;
-            return false;
+            var result = onlineShopDbContext.Users.SingleOrDefault(x => x.Username == username);
+            if (result == null)
+                return 0;
+            if (result.Status == false)
+                return -1;
+            if (result.Password == password)
+                return 1;
+            return -2;
         }
     }
 }

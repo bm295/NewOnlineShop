@@ -18,9 +18,9 @@ namespace NewShopOnline.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var userService = new UserService();
-                var result = userService.Login(loginModel.Username, loginModel.Password);
+                var result = userService.Login(loginModel.Username, Encryptor.MD5Hash(loginModel.Password));
 
-                if (result)
+                if (result == 1)
                 {
                     var user = userService.GetUserBy(loginModel.Username);
                     var userSession = new UserLoginSession()
@@ -30,6 +30,18 @@ namespace NewShopOnline.Areas.Admin.Controllers
                     };
                     Session.Add(Constants.USER_SESSION, userSession);
                     return RedirectToAction("Index", "Home");
+                }
+                else if (result == 0)
+                {
+                    ModelState.AddModelError(string.Empty, "Account not exist");
+                }
+                else if (result == -1)
+                {
+                    ModelState.AddModelError(string.Empty, "Account is locked");
+                }
+                else if (result == -2)
+                {
+                    ModelState.AddModelError(string.Empty, "Wrong password");
                 }
                 else
                 {
