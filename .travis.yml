@@ -1,3 +1,2 @@
 language: csharp
 solution: NewShopOnline.sln
-script: ./build.sh
