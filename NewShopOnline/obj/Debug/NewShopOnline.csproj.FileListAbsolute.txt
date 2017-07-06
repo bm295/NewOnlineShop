@@ -72,3 +72,7 @@ D:\github\NewShopOnline\NewShopOnline\bin\Model.dll.config
 D:\github\NewShopOnline\NewShopOnline\bin\EntityFramework.xml
 D:\github\NewShopOnline\NewShopOnline\bin\EntityFramework.SqlServer.dll
 D:\github\NewShopOnline\NewShopOnline\bin\EntityFramework.SqlServer.xml
+D:\github\NewShopOnline\NewShopOnline\bin\PagedList.dll
+D:\github\NewShopOnline\NewShopOnline\bin\PagedList.Mvc.dll
+D:\github\NewShopOnline\NewShopOnline\bin\PagedList.xml
+D:\github\NewShopOnline\NewShopOnline\bin\PagedList.Mvc.xml

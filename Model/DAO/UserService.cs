@@ -1,32 +1,65 @@
 ﻿using Model.EntityFramework;
+using PagedList;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Model.DAO
 {
     public class UserService
     {
-        OnlineShopDbContext onlineShopDbContext = null;
+        OnlineShopDbContext dbContext = null;
 
         public UserService()
         {
-            onlineShopDbContext = new OnlineShopDbContext();
+            dbContext = new OnlineShopDbContext();
         }
 
         public long Insert(User user)
         {
-            onlineShopDbContext.Users.Add(user);
-            onlineShopDbContext.SaveChanges();
+            dbContext.Users.Add(user);
+            dbContext.SaveChanges();
             return user.Id;
+        }
+
+        public bool Update(User entity)
+        {
+            try
+            {
+                var user = dbContext.Users.Find(entity.Id);
+                user.Name = entity.Name;
+                if (!string.IsNullOrEmpty(entity.Password))
+                    user.Password = entity.Password;
+                user.Address = entity.Address;
+                user.Email = entity.Email;
+                user.ModifiedBy = entity.ModifiedBy;
+                user.ModifiedDate = DateTime.Now;
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public IEnumerable<User> ListAllPaging(int page, int pageSize)
+        {
+            return dbContext.Users.OrderByDescending(x => x.Id).ToPagedList(page, pageSize);
         }
 
         public User GetUserBy(string username)
         {
-            return onlineShopDbContext.Users.SingleOrDefault(x => x.Username == username);
+            return dbContext.Users.SingleOrDefault(x => x.Username == username);
+        }
+
+        public User GetUserBy(int id)
+        {
+            return dbContext.Users.Find(id);
         }
 
         public int Login(string username, string password)
         {
-            var result = onlineShopDbContext.Users.SingleOrDefault(x => x.Username == username);
+            var result = dbContext.Users.SingleOrDefault(x => x.Username == username);
             if (result == null)
                 return 0;
             if (result.Status == false)

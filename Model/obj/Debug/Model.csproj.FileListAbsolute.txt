@@ -8,3 +8,7 @@ D:\github\NewShopOnline\Model\bin\Debug\EntityFramework.SqlServer.dll
 D:\github\NewShopOnline\Model\bin\Debug\EntityFramework.xml
 D:\github\NewShopOnline\Model\bin\Debug\EntityFramework.SqlServer.xml
 D:\github\NewShopOnline\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\github\NewShopOnline\Model\bin\Debug\PagedList.dll
+D:\github\NewShopOnline\Model\bin\Debug\PagedList.Mvc.dll
+D:\github\NewShopOnline\Model\bin\Debug\PagedList.xml
+D:\github\NewShopOnline\Model\bin\Debug\PagedList.Mvc.xml
