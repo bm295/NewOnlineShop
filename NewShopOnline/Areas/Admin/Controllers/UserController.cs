@@ -60,5 +60,12 @@ namespace NewShopOnline.Areas.Admin.Controllers
             }
             return View("Index");
         }
+
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            new UserService().Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }

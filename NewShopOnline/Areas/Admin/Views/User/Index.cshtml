@@ -32,11 +32,15 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
+                                <tr id="row_@item.Id">
                                     <td>
                                         <a href="/Admin/User/Edit/@item.Id">Edit</a>
                                         |
-                                        <a href="/Admin/User/Delete/@item.Id">Delete</a>
+                                        @Ajax.ActionLink("Delete", "Delete", new { @id = item.Id }, new AjaxOptions {
+                                       Confirm = "Do you confirm to delete this user?",
+                                       OnComplete = "$('#row_" + item.Id + "').remove()",
+                                       HttpMethod = "Delete"
+                                   })
                                     </td>
                                     <td>@item.Username</td>
                                     <td>@item.Name</td>
