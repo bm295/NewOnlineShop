@@ -8,10 +8,11 @@ namespace NewShopOnline.Areas.Admin.Controllers
     public class UserController : BaseController
     {
         // GET: Admin/User
-        public ActionResult Index(int page = 1, int pageSize = 1)
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
             var userService = new UserService();
-            var model = userService.ListAllPaging(page, pageSize);
+            var model = userService.ListAllPaging(searchString, page, pageSize);
+            ViewBag.SearchString = searchString;
             return View(model);
         }
 

@@ -42,9 +42,14 @@ namespace Model.DAO
                 return false;
             }
         }
-        public IEnumerable<User> ListAllPaging(int page, int pageSize)
+        public IEnumerable<User> ListAllPaging(string searchString, int page, int pageSize)
         {
-            return dbContext.Users.OrderByDescending(x => x.Id).ToPagedList(page, pageSize);
+            IQueryable<User> users = dbContext.Users;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(x => x.Username.Contains(searchString) || x.Name.Contains(searchString));
+            }
+            return users.OrderByDescending(x => x.Id).ToPagedList(page, pageSize);
         }
 
         public User GetUserBy(string username)
