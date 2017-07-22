@@ -8,7 +8,7 @@ namespace Model.DAO
 {
     public class UserService
     {
-        OnlineShopDbContext dbContext = null;
+        OnlineShopDbContext dbContext;
 
         public UserService()
         {
@@ -37,7 +37,7 @@ namespace Model.DAO
                 dbContext.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
