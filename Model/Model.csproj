@@ -55,6 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\CategoryService.cs" />
+    <Compile Include="DAO\ContentService.cs" />
     <Compile Include="DAO\UserService.cs" />
     <Compile Include="EntityFramework\About.cs" />
     <Compile Include="EntityFramework\Category.cs" />
