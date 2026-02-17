@@ -1,20 +1,20 @@
-﻿using NewShopOnline.Common;
-using System.Web.Mvc;
-using System.Web.Routing;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using NewShopOnline.Common;
 
-namespace NewShopOnline.Areas.Admin.Controllers
+namespace NewShopOnline.Areas.Admin.Controllers;
+
+[Area("Admin")]
+public class BaseController : Controller
 {
-    public class BaseController : Controller
+    public override void OnActionExecuting(ActionExecutingContext context)
     {
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        var username = HttpContext.Session.GetString(Constants.USER_SESSION);
+        if (string.IsNullOrWhiteSpace(username))
         {
-            var session = (UserLoginSession)Session[Constants.USER_SESSION];
-            if (session == null)
-            {
-                filterContext.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary(new { controller = "Login", action = "Index", Area = "Admin" }));
-            }
-            base.OnActionExecuting(filterContext);
+            context.Result = RedirectToAction("Index", "Login", new { area = "Admin" });
         }
+
+        base.OnActionExecuting(context);
     }
 }
