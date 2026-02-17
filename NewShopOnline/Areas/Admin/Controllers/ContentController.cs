@@ -1,58 +1,51 @@
-﻿using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Model.DAO;
 using Model.EntityFramework;
 
-namespace NewShopOnline.Areas.Admin.Controllers
+namespace NewShopOnline.Areas.Admin.Controllers;
+
+[Area("Admin")]
+public class ContentController : BaseController
 {
-    public class ContentController : BaseController
+    public IActionResult Index()
     {
-        // GET: Admin/Content
-        public ActionResult Index()
-        {
-            return View();
-        }
+        return View();
+    }
 
-        [HttpGet]
-        public ActionResult Create()
-        {
-            SetViewBag();
-            return View();
-        }
+    [HttpGet]
+    public IActionResult Create()
+    {
+        SetViewBag();
+        return View();
+    }
 
-        [HttpGet]
-        public ActionResult Edit(long id)
-        {
-            var contentService = new ContentService();
-            var content = contentService.GetContentBy(id);
-            SetViewBag(content.CategoryId);
-            return View();
-        }
+    [HttpGet]
+    public IActionResult Edit(long id)
+    {
+        var contentService = new ContentService();
+        var content = contentService.GetContentBy(id);
+        SetViewBag(content.CategoryId);
+        return View();
+    }
 
-        [HttpPost]
-        public ActionResult Edit(Content model)
-        {
-            if (ModelState.IsValid)
-            {
-            }
-            SetViewBag(model.CategoryId);
-            return View();
-        }
+    [HttpPost]
+    public IActionResult Edit(Content model)
+    {
+        SetViewBag(model.CategoryId);
+        return View();
+    }
 
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult Create(Content model)
-        {
-            if (ModelState.IsValid)
-            {
-            }
-            SetViewBag();
-            return View();
-        }
+    [HttpPost]
+    public IActionResult Create(Content model)
+    {
+        SetViewBag();
+        return View();
+    }
 
-        public void SetViewBag(long? selectedId = null)
-        {
-            var categoryService = new CategoryService();
-            ViewBag.CategoryId = new SelectList(categoryService.ListAll(), "Id", "Name", selectedId);
-        }
+    public void SetViewBag(long? selectedId = null)
+    {
+        var categoryService = new CategoryService();
+        ViewBag.CategoryId = new SelectList(categoryService.ListAll(), "Id", "Name", selectedId);
     }
 }

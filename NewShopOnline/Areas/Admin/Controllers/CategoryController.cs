@@ -1,18 +1,11 @@
-﻿using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
-namespace NewShopOnline.Areas.Admin.Controllers
+namespace NewShopOnline.Areas.Admin.Controllers;
+
+[Area("Admin")]
+public class CategoryController : Controller
 {
-    public class CategoryController : Controller
-    {
-        // GET: Admin/Category
-        public ActionResult Index()
-        {
-            return View();
-        }
+    public IActionResult Index() => View();
 
-        public ActionResult Create()
-        {
-            return View();
-        }
-    }
+    public IActionResult Create() => View();
 }

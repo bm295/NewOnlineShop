@@ -1,13 +1,12 @@
-﻿using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
-namespace NewShopOnline.Areas.Admin.Controllers
+namespace NewShopOnline.Areas.Admin.Controllers;
+
+[Area("Admin")]
+public class HomeController : BaseController
 {
-    public class HomeController : BaseController
+    public IActionResult Index()
     {
-        // GET: Admin/Home
-        public ActionResult Index()
-        {
-            return View();
-        }
+        return View();
     }
 }

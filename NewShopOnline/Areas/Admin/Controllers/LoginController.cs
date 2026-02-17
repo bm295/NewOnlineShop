@@ -1,54 +1,44 @@
-﻿using Model.DAO;
+using Microsoft.AspNetCore.Mvc;
+using Model.DAO;
 using NewShopOnline.Areas.Admin.Models;
 using NewShopOnline.Common;
-using System.Web.Mvc;
 
-namespace NewShopOnline.Areas.Admin.Controllers
+namespace NewShopOnline.Areas.Admin.Controllers;
+
+[Area("Admin")]
+public class LoginController : Controller
 {
-    public class LoginController : Controller
+    public IActionResult Index()
     {
-        // GET: Admin/Login
-        public ActionResult Index()
-        {
-            return View();
-        }
+        return View();
+    }
 
-        public ActionResult Login(LoginModel loginModel)
+    [HttpPost]
+    public IActionResult Login(LoginModel loginModel)
+    {
+        if (ModelState.IsValid)
         {
-            if (ModelState.IsValid)
+            var userService = new UserService();
+            var result = userService.Login(loginModel.Username, Encryptor.MD5Hash(loginModel.Password));
+
+            if (result == 1)
             {
-                var userService = new UserService();
-                var result = userService.Login(loginModel.Username, Encryptor.MD5Hash(loginModel.Password));
-
-                if (result == 1)
-                {
-                    var user = userService.GetUserBy(loginModel.Username);
-                    var userSession = new UserLoginSession()
-                    {
-                        UserId = user.Id,
-                        Username = user.Username
-                    };
-                    Session.Add(Constants.USER_SESSION, userSession);
-                    return RedirectToAction("Index", "Home");
-                }
-                else if (result == 0)
-                {
-                    ModelState.AddModelError(string.Empty, "Account not exist");
-                }
-                else if (result == -1)
-                {
-                    ModelState.AddModelError(string.Empty, "Account is locked");
-                }
-                else if (result == -2)
-                {
-                    ModelState.AddModelError(string.Empty, "Wrong password");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid Login");
-                }
+                var user = userService.GetUserBy(loginModel.Username);
+                HttpContext.Session.SetString(Constants.USER_SESSION, user.Username);
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
             }
-            return View("Index");
+
+            var error = result switch
+            {
+                0 => "Account not exist",
+                -1 => "Account is locked",
+                -2 => "Wrong password",
+                _ => "Invalid Login"
+            };
+
+            ModelState.AddModelError(string.Empty, error);
         }
+
+        return View("Index");
     }
 }
